@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width", initial-scale=1.0>
+        <title>Podcast scripting app</title>
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto+Slab:400,700&display=swap" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+        <!-- top anchor -->
+        <a class="top-anchor" id="top-anchor"></a>
+
+        <aside>
+            <div class="totals">
+                <h3>Totals:</h3>
+                <span class="total-char-count">Character count:</span>
+                <span class="total-reading-time">Reading time:</span>
+                <span class="total-jingles">Jingles:</span>
+                <span class="total-duration">Duration:</span>
+            </div>
+        </aside>
+        <main id="main-content">
+            <div class="text-area-wrapper">
+                <label for="textarea" class="text-area-label">Text block</label>
+                <input type="text" class="text-block-title" placeholder="Text block title ...">
+                <textarea
+                    id="textarea"
+                    class="text-block"
+                    placeholder="Type here your text ..."
+                    oninput="onInput(this)"
+                ></textarea>
+                <span id="char-count" class="char-count">Characters: N/A</span>
+                <span id="reading-time" class="reading-time">Estimated reading time: N/A</span>
+            </div>
+        </main>
+        <footer>
+            <div class="actions">
+                <button class="btn" id="button-add-textblock" onclick="createNewBlock()">Add text block</button>
+                <button class="btn" id="button-add-jingle">Add jingle</button>
+            </div>
+        </footer>
+
+        <!-- Scroll to top -->
+        <a class="scroll-to-top" href="#top-anchor"></a>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/scroll_to_top.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
