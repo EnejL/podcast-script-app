@@ -6,7 +6,6 @@
         <title>Podcast scripting app</title>
         <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto+Slab:400,700&display=swap" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet" type="text/css">
-
     </head>
 
     <body>
@@ -15,11 +14,16 @@
 
         <aside>
             <div class="totals">
-                <h3>Totals:</h3>
-                <span class="total-char-count">Character count:</span>
-                <span class="total-reading-time">Reading time:</span>
-                <span class="total-jingles">Jingles:</span>
-                <span class="total-duration">Duration:</span>
+                <h3 class="aside-totals-title" onclick="displayTotals()">
+                    Totals
+                    <i class="fas fa-angle-down"></i>
+                </h3>
+                <div class="aside-totals-body" id="aside-totals-body">
+                    <span class="total-char-count">Character count:</span>
+                    <span class="total-reading-time">Reading time:</span>
+                    <span class="total-jingles">Jingles:</span>
+                    <span class="total-duration">Duration:</span>
+                </div>
             </div>
         </aside>
         <main id="main-content">
@@ -40,14 +44,16 @@
             <div class="actions">
                 <button class="btn" id="button-add-textblock" onclick="createNewBlock()">Add text block</button>
                 <button class="btn" id="button-add-jingle">Add jingle</button>
+
+                <!-- Scroll to top -->
+                <a class="scroll-to-top" href="#top-anchor"></a>
             </div>
         </footer>
 
-        <!-- Scroll to top -->
-        <a class="scroll-to-top" href="#top-anchor"></a>
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
         <script src="js/scroll_to_top.js"></script>
+        <script src="js/display_totals.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
