@@ -1,0 +1,35 @@
+aside {
+	padding: 10px;
+	flex: 0 0 auto;
+	background-color: #ddd;
+}
+
+.totals {
+	display: flex;
+	flex-direction: column;
+}
+
+.aside-totals-title {
+	display: flex;
+	justify-content: space-between;
+}
+
+.aside-totals-title i {
+}
+
+.aside-totals-title.show-totals-body {
+	margin-bottom: 30px;
+}
+
+.aside-totals-title.show-totals-body i {
+	transform: rotate(180deg);
+}
+
+.aside-totals-body {
+	display: none;
+	flex-direction: column;
+}
+
+.aside-totals-body.show-totals-body {
+	display: flex;
+}

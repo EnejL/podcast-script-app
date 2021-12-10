@@ -8,6 +8,10 @@ window.onload = function() {
 		// jQuery is not loaded
 		console.log("jQuery doesn't Work");
 	}
+
+	$("#main-content").sortable({
+		cursor: "move"
+	});
 }
 
 // handling the text input and the corresponding calculations
@@ -29,12 +33,9 @@ function onInput(textarea) {
 	let a = $(textarea.id[0]);
 	let b = $(a.prevObject[0].activeElement.id);
 	let c = b.parent();
-	console.log(c)
 
 	let characterCountContainer = c[0].children[3];
 	let readingTimeContainer = c[0].children[4];
-	// console.log(characterCountContainer)
-	// console.log(readingTimeContainer)
 
 	characterCountContainer.innerHTML = 'Characters: ' + charCount;
 	readingTimeContainer.innerHTML = 'Estimated reading time: ' + readTimeCalculation;
@@ -50,9 +51,6 @@ function onInput(textarea) {
 
 // handling the creation of a new text block
 function createNewBlock() {
-	console.log("button works");
-	document.getElementById('button-add-textblock').style.backgroundColor = "orange";
-
 	counter++;
 
 	const div = document.createElement('div');
