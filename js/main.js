@@ -31,11 +31,10 @@ function onInput(textarea) {
 
 	// outputting the char count and word count into their brackets
 	let a = $(textarea.id[0]);
-	let b = $(a.prevObject[0].activeElement.id);
-	let c = b.parent();
+	let b = $(a.prevObject[0].activeElement);
 
-	let characterCountContainer = c[0].children[3];
-	let readingTimeContainer = c[0].children[4];
+	let characterCountContainer = b[0].parentElement.children[3];
+	let readingTimeContainer = b[0].parentElement.children[4];
 
 	characterCountContainer.innerHTML = 'Characters: ' + charCount;
 	readingTimeContainer.innerHTML = 'Estimated reading time: ' + readTimeCalculation;
