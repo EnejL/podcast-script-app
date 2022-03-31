@@ -46,8 +46,6 @@ function onInput(textarea) {
 	let taHeight = textArea.scrollHeight;
 	var numOfLines = Math.floor(taHeight / taLineHeight);
 	textArea.style.height = (numOfLines * 20) + 'px';
-
-	// return [charCount, readTimeCalculation];
 };
 
 // handling the creation of a new text block

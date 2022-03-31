@@ -19,10 +19,15 @@
                     <i class="fas fa-angle-down"></i>
                 </h3>
                 <div class="aside-totals-body" id="aside-totals-body">
-                    <span class="total-char-count">Character count:</span>
-                    <span class="total-reading-time">Reading time:</span>
-                    <span class="total-jingles">Jingles:</span>
-                    <span class="total-duration">Duration:</span>
+                    <span class="total-count total-char-count" id="total-char-count">Character count:</span>
+                    <span class="total-count total-word-count" id="total-word-count">Word count:</span>
+                    <span class="total-count total-reading-time" id="total-reading-time">Est. reading time:</span>
+                    <span class="total-count total-jingles" id="total-jingles">Jingles:</span>
+                    <span class="total-count total-duration" id="total-duration">
+                        <strong>
+                            Total est. duration:
+                        </strong>
+                    </span>
                 </div>
             </div>
         </aside>
@@ -37,7 +42,7 @@
                     oninput="onInput(this)"
                 ></textarea>
                 <span id="char-count" class="char-count">Characters: N/A</span>
-                <span id="word-count" class="char-count">Words: N/A</span>
+                <span id="word-count" class="word-count">Words: N/A</span>
                 <span id="reading-time" class="reading-time">Estimated reading time: N/A</span>
             </div>
         </main>
@@ -54,7 +59,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
         <script src="js/scroll_to_top.js"></script>
-        <script src="js/display_totals.js"></script>
+        <script src="js/totals.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
