@@ -29,14 +29,16 @@ function onInput(textarea) {
 	let wordCount = text.split(" ").length;
 	let readTimeCalculation = Math.ceil(wordCount / wpm);
 
-	// outputting the char count and word count into their brackets
+	// outputting the char count, word count and reading time into their brackets
 	let a = $(textarea.id[0]);
 	let b = $(a.prevObject[0].activeElement);
 
 	let characterCountContainer = b[0].parentElement.children[3];
-	let readingTimeContainer = b[0].parentElement.children[4];
+	let wordCountContainer = b[0].parentElement.children[4];
+	let readingTimeContainer = b[0].parentElement.children[5];
 
 	characterCountContainer.innerHTML = 'Characters: ' + charCount;
+	wordCountContainer.innerHTML = 'Words: ' + wordCount;
 	readingTimeContainer.innerHTML = 'Estimated reading time: ' + readTimeCalculation;
 
 	// adjusting the textarea height based on content
@@ -60,32 +62,8 @@ function createNewBlock() {
 			"<input type=\"text\" class=\"text-block-title\" placeholder=\"Text block title ...\">\n" +
 			"<textarea id=\"textarea-" + counter + "\" class=\"text-block\" placeholder=\"Type here your text ...\" oninput=\"onInput(this)\"></textarea>\n" +
 			"<span id=\"char-count-" + counter + "\" class=\"char-count\">Characters: N/A</span>\n" +
+			"<span id=\"word-count-" + counter + "\" class=\"word-count\">Words: N/A</span>\n" +
 			"<span id=\"reading-time-" + counter + "\" class=\"reading-time\">Estimated reading time: N/A</span>";
 
 	document.getElementById('main-content').appendChild(div);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
