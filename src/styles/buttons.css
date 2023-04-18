@@ -1,0 +1,28 @@
+.btn {
+    border: none;
+    outline: none;
+    background-color: var(--clr-bg-main);
+    color: var(--clr-dark);
+    border-radius: 3px;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn-delete {
+    background-color: var(--clr-bg-danger);
+    color: var(--clr-light);
+    margin: 0;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 15px 0 5px;
+}
+
+.btn-download {
+    margin-top: auto;
+}

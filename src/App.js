@@ -7,91 +7,113 @@ function App() {
 
   const mainAreaRef = useRef(null);
 
-  function handleAddTextarea() {
-    setTextareas([...textareas, ""]);
-  }
+  const addTextarea = () => {
+    const newTextArea = {
+      value: "",
+      wordCount: 0,
+      readingTime: 0,
+    };
+    setTextareas([...textareas, newTextArea]);
+  };
 
-  function handleAddJingle() {
-    setJingles([...jingles, 0]);
-  }
+  const addJingle = () => {
+    const newJingle = {
+      value: 0,
+    };
+    setJingles([...jingles, newJingle]);
+  };
 
-  function handleChange(event, index) {
+  const handleJingleChange = (index, value) => {
+    const newJingles = [...jingles];
+    newJingles[index].value = value;
+    setJingles(newJingles);
+  };
+
+  const handleTextareaChange = (index, value) => {
+    const newTextArea = [...textareas];
+    newTextArea[index].value = value;
+    newTextArea[index].wordCount = value.trim().split(/\s+/).length;
+    newTextArea[index].readingTime = Math.ceil(
+        newTextArea[index].wordCount / 200
+    );
+    setTextareas(newTextArea);
+  };
+
+  const handleDeleteTextarea = (index) => {
     const updatedTextareas = [...textareas];
-    updatedTextareas[index] = event.target.value;
+    updatedTextareas.splice(index, 1);
     setTextareas(updatedTextareas);
-  }
+  };
 
-  function handleJingleChange(event, index) {
+  const handleDeleteJingle = (index) => {
     const updatedJingles = [...jingles];
-    updatedJingles[index] = Number(event.target.value);
+    updatedJingles.splice(index, 1);
     setJingles(updatedJingles);
-  }
+  };
 
-  function calculateReadingTime(text) {
-    const words = text.split(/\s+/).length;
-    const readingTimeInMinutes = words / 200;
-    return Math.round(readingTimeInMinutes);
-  }
-
-  function calculateWordCount(text) {
-    const words = text.split(/\s+/).filter(Boolean).length;
-    return words;
-  }
-
-  const totalChars = textareas.reduce((acc, curr) => acc + curr.length, 0);
-
-  const totalReadingTime = textareas.reduce(
-    (acc, curr) => acc + calculateReadingTime(curr),
-    0
-  ) + jingles.reduce((acc, curr) => acc + curr, 0);
-
-  function handleDownload() {
-    const mainArea = mainAreaRef.current;
-    const options = {
-      margin: [0.5, 0.5],
-      filename: "textareas.pdf",
+  const handleDownload = () => {
+    const element = mainAreaRef.current;
+    const opt = {
+      margin: 0.5,
+      filename: "myScript.pdf",
       image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { dpi: 192, letterRendering: true },
+      html2canvas: { scale: 2 },
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
     };
-    html2pdf().from(mainArea).set(options).save();
-  }
+    html2pdf().set(opt).from(element).save();
+  };
+
+  const totalWordCount = textareas.reduce(
+      (total, textarea) => total + textarea.wordCount,
+      0
+  );
+
+  const totalReadingTime = textareas.reduce(
+      (total, textarea) => total + textarea.readingTime,
+      0
+  ) + jingles.reduce((total, jingle) => total + jingle.value, 0);
 
   return (
-    <div className="App">
-      <div className="sidebar">
-        <button onClick={handleAddTextarea}>Add Textarea</button>
-        <button onClick={handleAddJingle}>Jingle</button>
-        <button onClick={handleDownload}>Download</button>
-        <div>Total Characters: {totalChars} minutes</div>
-        <div>Total Reading Time: {totalReadingTime} minutes</div>
+      <div className="App">
+        <div className="sidebar">
+          <button className="btn" onClick={addTextarea}>Add Text area</button>
+          <button className="btn" onClick={addJingle}>Add Jingle</button>
+          <p>Total Word Count: {totalWordCount}</p>
+          <p>Total Reading Time: {totalReadingTime} minutes</p>
+          <button className="btn btn-download" onClick={handleDownload}>Download</button>
+        </div>
+        <div className="main-area" ref={mainAreaRef}>
+          {textareas.map((textarea, index) => (
+              <div key={index} className="textarea-container" id={`textarea-${index}`}>
+                <h3>Text area {index + 1}: </h3>
+                <textarea
+                    value={textarea.value}
+                    onChange={(e) => handleTextareaChange(index, e.target.value)}
+                    className="textarea"
+                    placeholder="Insert your text here"
+                />
+                <p>Word Count: {textarea.wordCount}</p>
+                <p>Reading Time: {textarea.readingTime} minutes</p>
+                <button className="btn btn-delete" onClick={() => handleDeleteTextarea(index)}>X</button>
+              </div>
+          ))}
+          {jingles.map((jingle, index) => (
+              <div key={index} className="jingle-container" id={`jingle-${index}`}>
+                <h3>Jingle {index + 1}: </h3>
+                <label>Insert sound effect duration in seconds</label>
+                <input
+                    type="number"
+                    value={jingle.value}
+                    onChange={(e) =>
+                        handleJingleChange(index, parseInt(e.target.value))
+                    }
+                    placeholder="Sound effect (in seconds)"
+                />
+                <button className="btn btn-delete" onClick={() => handleDeleteJingle(index)}>X</button>
+              </div>
+          ))}
+        </div>
       </div>
-      <div className="main-area" ref={mainAreaRef}>
-        {textareas.map((textarea, index) => (
-          <div key={index}>
-            <textarea
-              value={textarea}
-              onChange={(event) => handleChange(event, index)}
-            />
-            <div>{textarea.length} characters</div>
-            <div>{calculateWordCount(textarea)} words</div>
-            <div>
-              Estimated Reading Time: {calculateReadingTime(textarea)} minutes
-            </div>
-          </div>
-        ))}
-        {jingles.map((jingle, index) => (
-          <div key={index}>
-            <input
-              type="number"
-              value={jingle}
-              onChange={(event) => handleJingleChange(event, index)}
-            />
-            <div>Jingle Time: {jingle} minutes</div>
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }
 
