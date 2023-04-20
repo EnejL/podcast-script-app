@@ -23,6 +23,12 @@
     border-radius: 0 15px 0 5px;
 }
 
+.btn-delete-all {
+    background-color: var(--clr-bg-danger);
+    color: var(--clr-light);
+    margin: 0;
+}
+
 .btn-download {
     margin-top: auto;
 }

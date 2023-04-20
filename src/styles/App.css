@@ -14,8 +14,12 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    background-color: var(--clr-dark);
+    background-color: #ddd;
     padding: 15px 10px;
+}
+
+.main-area-lvl-1 {
+    display: flex;
 }
 
 input,
@@ -29,25 +33,33 @@ textarea {
     resize: vertical;
 }
 
-.textarea-container,
-.jingle-container {
+.textblock-container,
+.sound-effect-container {
     padding: 25px;
     margin: 10px;
     border-radius: 15px;
-    background-color: rgba(0, 0, 0, .3);
+    background-color: rgba(0, 0, 0, .7);
+    font-size: 1.5rem;
 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-
     position: relative;
+}
+
+.textblock-container > *,
+.sound-effect-container > * {
+    font-size: 1.5rem;
 }
 
 .textarea {
     width: 100%;
-    height: 100px;
 }
 
-.jingle-container {
+.textblock-container {
+    width: 100%;
+}
+
+.sound-effect-container {
     align-self: flex-start;
+    min-width: 300px;
 }
